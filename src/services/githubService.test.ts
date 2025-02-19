@@ -1,6 +1,5 @@
 import { fetchPullRequests } from './githubService';
 
-
 global.fetch = jest.fn();
 
 describe('fetchPullRequests', () => {
@@ -45,4 +44,24 @@ describe('fetchPullRequests', () => {
     expect(result).toEqual([{ id: 2, title: 'Another Test PR' }]);
   });
 
+  it('should handle API failure gracefully', async () => {
+    (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('API Error'));
+
+    await expect(fetchPullRequests()).rejects.toThrow('API Error');
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('should handle an empty API response correctly', async () => {
+    const mockResponse = {
+      json: jest.fn().mockResolvedValueOnce([]),
+    };
+
+    (global.fetch as jest.Mock).mockResolvedValueOnce(mockResponse);
+
+    const result = await fetchPullRequests();
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(result).toEqual([]);
+  });
 });

@@ -1,60 +1,65 @@
-# Getting Started with Create React App
+# GitHub Pull Request Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This project is a **React TypeScript** application that fetches and displays pull requests from a GitHub repository. Users can filter pull requests using a **multi-select dropdown** based on labels, improving searchability and usability.
 
-## Available Scripts
+## Features
+- Fetch and display pull requests from GitHub.
+- **Multi-select dropdown** for filtering PRs by labels.
+- Displays PR details including **ID, Title, Labels, Date Opened, and Link**.
+- Uses **Material-UI** for improved UI components.
+- Utilizes **React Hooks** (`useState`, `useEffect`) for state management.
+- Fully tested with **Jest and React Testing Library**.
 
-In the project directory, you can run:
+## How We Built It
+1. **Fetching Data:**
+   - Implemented an API call in `githubService.ts` to fetch pull requests.
+   - The response data is processed and stored in `useState`.
+2. **Multi-Select Filtering:**
+   - Replaced the text input with a **Material-UI Select dropdown**.
+   - Extracts all unique labels dynamically from fetched PRs.
+   - Filters PRs to include those with **at least one selected label**.
+3. **Table Display:**
+   - Uses **MUI's DataGrid** to display PRs.
+   - Columns include PR ID, Title, Labels, Date Opened, and a clickable **GitHub Link**.
+   - Labels column uses `renderCell` to display label names.
+4. **Styling & Layout:**
+   - Applied basic CSS for layout and styling.
+   - Used **Material-UI's Chip** component for selected filters.
+5. **Testing:**
+   - `PullRequestList.test.tsx` verifies UI rendering and filtering.
+   - `githubService.test.ts` ensures API calls work correctly.
 
-### `npm start`
+## Installation & Setup
+1. Clone the repository:
+   ```sh
+   git clone <repository_url>
+   cd GithubPullRequest
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+3. Run the application:
+   ```sh
+   npm start
+   ```
+   This starts the React development server at `http://localhost:3000/`.
 
-### `npm run test`
+4. Run tests:
+   ```sh
+   npm test
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Dependencies
+- **React** (TypeScript-based)
+- **Material-UI** (`@mui/material`, `@mui/x-data-grid`)
+- **Jest & React Testing Library**
+- **Axios** (if used in `githubService.ts`)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-
-## Test Details
-
-The react app will call the API and get the github pull request details, will show in the UI.
-1. Filter functionality:
-    We can use the Filter by label search box to filter the label data in the DataGrid
-
-2. Module used in the APP:
-    @mui/x-data-grid used to achieve the Data Grid table.
-
-3. src/Components Folder have PullRequestList.tsx components which has all the Logic.
-4. All the API functionality added in the src/services dir.
-5. Test cases covered for all the typescript code.
+## Future Enhancements
+- Add **pagination and sorting** for better data handling.
+- Implement **real-time updates** using GitHub webhooks.
+- Improve **error handling and loading indicators**.
