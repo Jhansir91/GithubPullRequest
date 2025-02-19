@@ -14,7 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `npm run test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
@@ -44,3 +44,17 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Test Details
+
+The react app will call the API and get the github pull request details, will show in the UI.
+1. Filter functionality:
+    We can use the Filter by label search box to filter the label data in the DataGrid
+
+2. Module used in the APP:
+    @mui/x-data-grid used to achieve the Data Grid table.
+
+3. src/Components Folder have PullRequestList.tsx components which has all the Logic.
+4. All the API functionality added in the src/services dir.
+5. Test cases covered for all the typescript code.

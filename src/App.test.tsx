@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders GitHub App footer', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const footerElement = await screen.findByText(/© 2023 GitHub App. All rights reserved./i);
+  expect(footerElement).toBeInTheDocument();
 });
